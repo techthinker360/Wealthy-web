@@ -42,7 +42,7 @@ I create **modern websites, landing pages, and digital solutions** designed to h
 ---
 
 ## 🚀 Live Demo
-👉 [View Website](https://techthinker360.github.io/wealthy-web/)  
+👉 [View Website](https://techthinker360.github.io/Wealthy-web/)  
 
 ---
 
