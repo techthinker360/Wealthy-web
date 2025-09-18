@@ -33,13 +33,15 @@
       transition: background-image 1s ease-in-out;
     }
 
-    #dynamic-header .overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(79,70,229,0.6); /* semi-transparent overlay */
-      z-index: 1;
-    }
-
+#dynamic-header .bg-slide {
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out; /* smooth fade */
+}
     #dynamic-header h1, #dynamic-header p, #dynamic-header nav {
       position: relative;
       z-index: 2;
@@ -102,15 +104,17 @@
 
   <!-- Dynamic Header -->
   <header id="dynamic-header">
-    <div class="overlay"></div>
-    <h1>Wealthy Web Solutions</h1>
-    <p>Landing Pages | Full Websites | E-commerce | Investment Portals | Custom Digital Solutions</p>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+  <div class="overlay"></div>
+  <div class="bg-slide" id="slide1"></div>
+  <div class="bg-slide" id="slide2"></div>
+  <h1>Wealthy Web Solutions</h1>
+  <p>Landing Pages | Full Websites | E-commerce/Consignment | Investment/Financial sites| Graphics/Branding</p>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -197,33 +201,35 @@
 
   <!-- JavaScript for Dynamic Header Images -->
   <script>
-    const header = document.getElementById('dynamic-header');
+  const slides = [
+  'images/Landing_1.jpg','images/Landing_2.jpg',
+  'images/Website_1.jpg','images/Website_2.jpg',
+  'images/Shopping_1.jpg','images/Shopping_2.jpg',
+  'images/Investment_1.jpg','images/Investment_2.jpg',
+  'images/Graphics_1.jpg','images/Graphics_2.jpg',
+  'images/Analysis_1.jpg','images/Analysis_2.jpg'
+];
 
-    // Array of all service image
-    const images = [
-      'Web-images/Landing_1.jpg',
-      'Web-images/Landing_2.jpg',
-      'Web-images/Website_1.jpg',
-      'Web-images/Website_2.jpg',
-      'Web-images/Shopping_1.jpg',
-      'Web-images/Shopping_2.jpg',
-      'Web-images/Investment_1.jpg',
-      'Web-images/Investment_2.jpg',
-      'Web-images/Graphics_1.jpg',
-      'Web-images/Graphics_2.jpg',
-      'Web-images/Analysis_1.jpg',
-      'Web-images/Analysis_2.jpg'
-    ];
+let current = 0;
+const slide1 = document.getElementById('slide1');
+const slide2 = document.getElementById('slide2');
 
-    let index = 0;
+// Initial setup
+slide1.style.backgroundImage = `url('${slides[current]}')`;
+slide1.style.opacity = 1;
 
-    function changeBackground() {
-      header.style.backgroundImage = `url('${images[index]}')`;
-      index = (index + 1) % images.length; // loop infinitely
-    }
+setInterval(() => {
+  const next = (current + 1) % slides.length;
+  slide2.style.backgroundImage = `url('${slides[next]}')`;
+  slide2.style.opacity = 1;
+  slide1.style.opacity = 0;
 
-    changeBackground(); // initial image
-    setInterval(changeBackground, 10000); // change every 10 seconds
+  // Swap for next iteration
+  [slide1.style.backgroundImage, slide2.style.backgroundImage] = [slide2.style.backgroundImage, slide1.style.backgroundImage];
+  [slide1.style.opacity, slide2.style.opacity] = [1, 0];
+
+  current = next;
+}, 10000); // 10 seconds per image
   </script>
 
 </body>
