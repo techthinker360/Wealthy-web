@@ -19,38 +19,39 @@
       to {opacity: 1;}
     }
 
-   #dynamic-header {
-    position: relative;
-    height: 400px;
-    color: #fff;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    overflow: hidden;
-  }
+    /* Dynamic Header */
+    #dynamic-header {
+      position: relative;
+      height: 400px;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-  #dynamic-header .overlay {
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(79,70,229,0.6);
-    z-index: 1;
-  }
+    #dynamic-header .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(79,70,229,0.6);
+      z-index: 1;
+    }
 
-  #dynamic-header .bg-slide {
-    position: absolute;
-    top:0; left:0; right:0; bottom:0;
-    background-size: cover;
-    background-position: center;
-    z-index: 0;
-    opacity: 0;
-    transition: opacity 1.0s ease-in-out;
-  }
+    #dynamic-header .bg-slide {
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out; /* 1 second fade */
+    }
 
-  #dynamic-header h1, #dynamic-header p, #dynamic-header nav {
-    position: relative;
-    z-index: 2;
-  }
+    #dynamic-header h1, #dynamic-header p, #dynamic-header nav {
+      position: relative;
+      z-index: 2;
+    }
 
     nav a {color: #fff; text-decoration: none; margin: 0 1rem; font-weight: 600; transition: color 0.3s;}
     nav a:hover {color: #d1d5db;}
@@ -108,16 +109,17 @@
 <body>
 
   <!-- Dynamic Header -->
-  <<div class="overlay"></div>
-  <div class="bg-slide" id="slide1"></div>
-  <div class="bg-slide" id="slide2"></div>
-  <h1>Wealthy Web Solutions</h1>
-  <p>Landing Pages | Full Websites | E-commerce | Investment Portals | Custom Digital Solutions</p>
-  <nav>
-    <a href="#services">Services</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <header id="dynamic-header">
+    <div class="overlay"></div>
+    <div class="bg-slide" id="slide1"></div>
+    <div class="bg-slide" id="slide2"></div>
+    <h1>Wealthy Web Solutions</h1>
+    <p>Landing Pages | Full Websites | E-commerce | Investment Portals | Custom Digital Solutions</p>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
   <!-- Hero Section -->
@@ -192,7 +194,8 @@
     <h3>Work With Me</h3>
     <p>Ready to bring your project to life? Reach out today and let’s discuss how I can help you create a professional, high-performing website or platform.</p>
     <p>Email: <a href="mailto:odafeogheneemeseh007@gmail.com">odafeogheneemeseh007@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/odafeoghene-emeseh-941464384" target="_blank">Odafeoghene Emeseh</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in
+<p>LinkedIn: <a href="https://www.linkedin.com/in/odafeoghene-emeseh-941464384" target="_blank">Odafeoghene Emeseh</a></p>
     <p>GitHub: <a href="https://github.com/techthinker360" target="_blank">techthinker360</a></p>
     <p>WhatsApp: <a href="https://wa.me/+2347032199329" target="_blank">Chat with me now</a></p>
     <button onclick="window.location.href='mailto:odafeogheneemeseh007@gmail.com';" style="margin-top:1rem;padding:0.8rem 1.5rem;background:#4F46E5;color:#fff;border:none;border-radius:8px;cursor:pointer;">Send a Message</button>
