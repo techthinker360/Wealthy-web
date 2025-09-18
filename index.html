@@ -30,19 +30,11 @@
   background-position: center;  
   transition: background-image 1s ease-in-out;  
 }
-
-#dynamic-header .bg-slide {
-position: absolute;
-top:0; left:0; right:0; bottom:0;
-background-size: cover;
-background-position: center;
-z-index: 0;
-opacity: 0;
-transition: opacity 1s ease-in-out; /* smooth fade */
-}
-#dynamic-header h1, #dynamic-header p, #dynamic-header nav {
-position: relative;
-z-index: 2;
+#dynamic-header .overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.35); /* Adjust the 0.35 for darkness (0 = no dark, 1 = black) */
+  z-index: 1;
 }
 
 nav a {color: #fff; text-decoration: none; margin: 0 1rem; font-weight: 600; transition: color 0.3s;}  
