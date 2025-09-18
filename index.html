@@ -181,12 +181,12 @@
 
   <!-- Contact Section -->
   <section class="section" id="contact">
-    <h3>Get your Website works done</h3>
+    <h3>Work With Me</h3>
     <p>Ready to bring your project to life? Reach out today and let’s discuss how I can help you create a professional, high-performing website or platform.</p>
     <p>Email: <a href="mailto:odafeogheneemeseh007@gmail.com">odafeogheneemeseh007@gmail.com</a></p>
     <p>LinkedIn: <a href="https://www.linkedin.com/in/odafeoghene-emeseh-941464384" target="_blank">Odafeoghene Emeseh</a></p>
     <p>GitHub: <a href="https://github.com/techthinker360" target="_blank">techthinker360</a></p>
-    <p>WhatsApp: <a href="https://wa.me/+2347032199329" target="_blank">Chat with me now</a></p>
+    <p>WhatsApp: <a href="https://wa.me/234XXXXXXXXXX" target="_blank">Chat with me now</a></p>
     <button onclick="window.location.href='mailto:odafeogheneemeseh007@gmail.com';" style="margin-top:1rem;padding:0.8rem 1.5rem;background:#4F46E5;color:#fff;border:none;border-radius:8px;cursor:pointer;">Send a Message</button>
   </section>
 
@@ -199,37 +199,32 @@
   <script>
     const header = document.getElementById('dynamic-header');
 
+    // Array of all service images (use exact capitalization)
     const images = [
-      'images/landing-page.jpg',
-      'images/full-website.jpg',
-      'images/ecommerce.jpg',
-      'images/investment.jpg'
+      'images/Landing_1.jpg',
+      'images/Landing_2.jpg',
+      'images/Website_1.jpg',
+      'images/Website_2.jpg',
+      'images/Shopping_1.jpg',
+      'images/Shopping_2.jpg',
+      'images/Investment_1.jpg',
+      'images/Investment_2.jpg',
+      'images/Graphics_1.jpg',
+      'images/Graphics_2.jpg',
+      'images/Analysis_1.jpg',
+      'images/Analysis_2.jpg'
     ];
 
     let index = 0;
 
     function changeBackground() {
       header.style.backgroundImage = `url('${images[index]}')`;
-      index = (index + 1) % images.length;
+      index = (index + 1) % images.length; // loop infinitely
     }
 
-    changeBackground(); // initial
+    changeBackground(); // initial image
     setInterval(changeBackground, 4000); // change every 4 seconds
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
