@@ -31,23 +31,27 @@
       overflow: hidden;
     }
 
-    #dynamic-header .overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.35);
-      z-index: 1;
-    }
+    #dynamic-header {
+  position: relative;
+  height: 70vh; /* taller to show images */
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    #dynamic-header .bg-slide {
-      position: absolute;
-      top:0; left:0; right:0; bottom:0;
-      background-size: cover;
-      background-position: center;
-      z-index: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      filter: brightness(0.85);
-    }
+#dynamic-header .bg-slide {
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 0;
+  filter: brightness(0.85);
+}
 
     #dynamic-header h1, #dynamic-header p, #dynamic-header nav {
       position: relative;
