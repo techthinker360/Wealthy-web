@@ -28,24 +28,16 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
     }
 
     #dynamic-header .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(79,70,229,0.6);
+      background: rgba(79,70,229,0.6); /* semi-transparent overlay */
       z-index: 1;
-    }
-
-    #dynamic-header .bg-slide {
-      position: absolute;
-      top:0; left:0; right:0; bottom:0;
-      background-size: cover;
-      background-position: center;
-      z-index: 0;
-      opacity: 0;
-      transition: opacity 1s ease-in-out; /* 1 second fade */
     }
 
     #dynamic-header h1, #dynamic-header p, #dynamic-header nav {
@@ -111,8 +103,6 @@
   <!-- Dynamic Header -->
   <header id="dynamic-header">
     <div class="overlay"></div>
-    <div class="bg-slide" id="slide1"></div>
-    <div class="bg-slide" id="slide2"></div>
     <h1>Wealthy Web Solutions</h1>
     <p>Landing Pages | Full Websites | E-commerce | Investment Portals | Custom Digital Solutions</p>
     <nav>
@@ -194,10 +184,9 @@
     <h3>Work With Me</h3>
     <p>Ready to bring your project to life? Reach out today and let’s discuss how I can help you create a professional, high-performing website or platform.</p>
     <p>Email: <a href="mailto:odafeogheneemeseh007@gmail.com">odafeogheneemeseh007@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in
-<p>LinkedIn: <a href="https://www.linkedin.com/in/odafeoghene-emeseh-941464384" target="_blank">Odafeoghene Emeseh</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/odafeoghene-emeseh-941464384" target="_blank">Odafeoghene Emeseh</a></p>
     <p>GitHub: <a href="https://github.com/techthinker360" target="_blank">techthinker360</a></p>
-    <p>WhatsApp: <a href="https://wa.me/+2347032199329" target="_blank">Chat with me now</a></p>
+    <p>WhatsApp: <a href="https://wa.me/234XXXXXXXXXX" target="_blank">Chat with me now</a></p>
     <button onclick="window.location.href='mailto:odafeogheneemeseh007@gmail.com';" style="margin-top:1rem;padding:0.8rem 1.5rem;background:#4F46E5;color:#fff;border:none;border-radius:8px;cursor:pointer;">Send a Message</button>
   </section>
 
@@ -208,43 +197,34 @@
 
   <!-- JavaScript for Dynamic Header Images -->
   <script>
-const header = document.getElementById('dynamic-header');
+    const header = document.getElementById('dynamic-header');
 
-// Array of all service images (exact capitalization)
-const images = [
-  'Web-images/Landing_1.jpg',
-  'Web-images/Landing_2.jpg',
-  'Web-images/Website_1.jpg',
-  'Web-images/Website_2.jpg',
-  'Web-images/Shopping_1.jpg',
-  'Web-images/Shopping_2.jpg',
-  'Web-images/Investment_1.jpg',
-  'Web-images/Investment_2.jpg',
-  'Web-images/Graphics_1.jpg',
-  'Web-images/Graphics_2.jpg',
-  'Web-images/Analysis_1.jpg',
-  'Web-images/Analysis_2.jpg'
-];
-let current = 0;
-const slide1 = document.getElementById('slide1');
-const slide2 = document.getElementById('slide2');
-slide1.style.backgroundImage = `url('${slides[current]}')`;
-slide1.style.opacity = 1;
+    // Array of all service images (use exact capitalization)
+    const images = [
+      'Web-images/Landing_1.jpg',
+      'Web-images/Landing_2.jpg',
+      'Web-images/Website_1.jpg',
+      'Web-images/Website_2.jpg',
+      'Web-images/Shopping_1.jpg',
+      'Web-images/Shopping_2.jpg',
+      'Web-images/Investment_1.jpg',
+      'Web-images/Investment_2.jpg',
+      'Web-images/Graphics_1.jpg',
+      'Web-images/Graphics_2.jpg',
+      'Web-images/Analysis_1.jpg',
+      'Web-images/Analysis_2.jpg'
+    ];
 
-setInterval(() => {
-  const next = (current + 1) % slides.length;
-  slide2.style.backgroundImage = `url('${slides[next]}')`;
-  slide2.style.opacity = 1;
-  slide1.style.opacity = 0;
+    let index = 0;
 
-  // Swap slide1 and slide2 for next iteration
-  [slide1.style.backgroundImage, slide2.style.backgroundImage] = [slide2.style.backgroundImage, slide1.style.backgroundImage];
-  [slide1.style.opacity, slide2.style.opacity] = [1, 0];
+    function changeBackground() {
+      header.style.backgroundImage = `url('${images[index]}')`;
+      index = (index + 1) % images.length; // loop infinitely
+    }
 
-  current = next;
-}, 10000); // every 10 seconds
+    changeBackground(); // initial image
+    setInterval(changeBackground, 4000); // change every 4 seconds
   </script>
 
 </body>
 </html>
-
