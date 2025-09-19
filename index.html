@@ -1,155 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-  <title>Wealthy Web Solutions</title>  
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">  
-  <style>  
-    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}  
-    body {background: #f9fafc; color: #333; line-height: 1.6;}  
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wealthy Web Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif;}
+    body {background: #f9fafc; color: #333; line-height: 1.6;}
 
-    /* Animations */  
-    @keyframes fadeInUp {  
-      from {opacity: 0; transform: translateY(20px);}  
-      to {opacity: 1; transform: translateY(0);}  
-    }  
-    @keyframes fadeIn {  
-      from {opacity: 0;}  
-      to {opacity: 1;}  
-    }  
-
-    /* Dynamic Header */  
-    #dynamic-header {  
-      position: relative;  
-      height: 400px;  
-      color: #fff;  
-      text-align: center;  
-      display: flex;  
-      flex-direction: column;  
-      justify-content: center;  
-      overflow: hidden;  
+    /* Animations */
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
 
-    /* Background slides for header */  
-    .bg-slide {  
-      position: absolute;  
-      top: 0; left: 0; right: 0; bottom: 0;  
-      background-size: cover;  
-      background-position: center;  
-      opacity: 0;  
-      transition: opacity 1s ease-in-out;  
-      z-index: 0;  
+    /* Dynamic Header */
+    #dynamic-header {
+      position: relative;
+      height: 400px;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
     }
 
-    #dynamic-header h1,  
-    #dynamic-header p,  
-    #dynamic-header nav {  
-      position: relative;  
-      z-index: 1;  
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.6); /* keeps text readable on bright images */  
+    #dynamic-header .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(79,70,229,0.6); /* semi-transparent overlay */
+      z-index: 1;
     }
 
-    nav a {color: #fff; text-decoration: none; margin: 0 1rem; font-weight: 600; transition: color 0.3s;}  
-    nav a:hover {color: #d1d5db;}  
+    #dynamic-header h1, #dynamic-header p, #dynamic-header nav {
+      position: relative;
+      z-index: 2;
+    }
 
-    /* Hero Section */  
-    .hero {  
-      padding: 4rem 2rem; text-align: center; animation: fadeInUp 1.2s ease;  
-    }  
-    .hero h2 {font-size: 2rem; color: #111;}  
-    .hero p {max-width: 700px; margin: 1rem auto; font-size: 1.1rem; color: #555;}  
-    .hero button {  
-      padding: 0.8rem 1.5rem; font-size: 1rem;  
-      background: #4F46E5; color: #fff; border: none;  
-      border-radius: 8px; cursor: pointer; margin-top: 1rem;  
-      transition: transform 0.3s, background 0.3s;  
-    }  
-    .hero button:hover {background: #4338CA; transform: translateY(-3px);}  
+    nav a {color: #fff; text-decoration: none; margin: 0 1rem; font-weight: 600; transition: color 0.3s;}
+    nav a:hover {color: #d1d5db;}
 
-    /* Section Styling */  
-    .section {padding: 3rem 2rem; max-width: 1100px; margin: auto;}  
-    .section h3 {text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #111; animation: fadeInUp 1s ease;}  
+    /* Hero Section */
+    .hero {
+      padding: 4rem 2rem; text-align: center; animation: fadeInUp 1.2s ease;
+    }
+    .hero h2 {font-size: 2rem; color: #111;}
+    .hero p {max-width: 700px; margin: 1rem auto; font-size: 1.1rem; color: #555;}
+    .hero button {
+      padding: 0.8rem 1.5rem; font-size: 1rem;
+      background: #4F46E5; color: #fff; border: none;
+      border-radius: 8px; cursor: pointer; margin-top: 1rem;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .hero button:hover {background: #4338CA; transform: translateY(-3px);}
 
-    /* Services Cards */  
-    .services {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;}  
-    .card {  
-      background: #fff; padding: 2rem; border-radius: 10px;  
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);  
-      transition: transform 0.3s, box-shadow 0.3s;  
-      animation: fadeInUp 1.2s ease;  
-    }  
-    .card:hover {transform: translateY(-8px); box-shadow: 0 8px 16px rgba(0,0,0,0.1);}  
-    .card h4 {margin-bottom: 1rem; color: #4F46E5;}  
-    .card p {color: #555;}  
+    /* Section Styling */
+    .section {padding: 3rem 2rem; max-width: 1100px; margin: auto;}
+    .section h3 {text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #111; animation: fadeInUp 1s ease;}
 
-    /* Pricing Boxes */  
-    .pricing {display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;}  
-    .price-box {  
-      flex: 1 1 280px; background: #fff; padding: 2rem;  
-      border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);  
-      text-align: center; animation: fadeInUp 1.2s ease;  
-      transition: transform 0.3s, box-shadow 0.3s;  
-    }  
-    .price-box:hover {transform: translateY(-8px); box-shadow: 0 8px 16px rgba(0,0,0,0.1);}  
-    .price-box h4 {color: #4F46E5; margin-bottom: 1rem;}  
-    .price-box p {margin-bottom: 1rem; color: #555;}  
-    .price {font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;}  
+    /* Services Cards */
+    .services {display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;}
+    .card {
+      background: #fff; padding: 2rem; border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeInUp 1.2s ease;
+    }
+    .card:hover {transform: translateY(-8px); box-shadow: 0 8px 16px rgba(0,0,0,0.1);}
+    .card h4 {margin-bottom: 1rem; color: #4F46E5;}
+    .card p {color: #555;}
 
-    #contact p {margin: 0.5rem 0;}  
+    /* Pricing Boxes */
+    .pricing {display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;}
+    .price-box {
+      flex: 1 1 280px; background: #fff; padding: 2rem;
+      border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      text-align: center; animation: fadeInUp 1.2s ease;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .price-box:hover {transform: translateY(-8px); box-shadow: 0 8px 16px rgba(0,0,0,0.1);}
+    .price-box h4 {color: #4F46E5; margin-bottom: 1rem;}
+    .price-box p {margin-bottom: 1rem; color: #555;}
+    .price {font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;}
 
-    footer {background: #111; color: #ddd; padding: 2rem; text-align: center; margin-top: 3rem; animation: fadeIn 1.2s ease;}  
-    footer a {color: #4F46E5; text-decoration: none;}  
-    footer a:hover {text-decoration: underline;}  
-  </style>  
-</head>  
-<body>  
-  <!-- Dynamic Header -->  
-  <header id="dynamic-header">  
-    <div class="bg-slide" id="slide1"></div>  
-    <div class="bg-slide" id="slide2"></div>  
-    <h1>Wealthy Web Solutions</h1>  
-    <p>Landing Pages | Full Websites | E-commerce/Consignment | Investment/Financial Sites | Graphics/Branding</p>  
-    <nav>  
-      <a href="#services">Services</a>  
-      <a href="#pricing">Pricing</a>  
-      <a href="#contact">Contact</a>  
-    </nav>  
-  </header>  
+    #contact p {margin: 0.5rem 0;}
 
-  <!-- Rest of your sections (hero, services, pricing, contact, footer) remain same -->  
+    footer {background: #111; color: #ddd; padding: 2rem; text-align: center; margin-top: 3rem; animation: fadeIn 1.2s ease;}
+    footer a {color: #4F46E5; text-decoration: none;}
+    footer a:hover {text-decoration: underline;}
+  </style>
+</head>
+<body>
 
-  <!-- JavaScript for Dynamic Header Images -->  
-  <script>  
-    const slides = [  
-      'Web-images/Landing_1.jpg','Web-images/Landing_2.jpg',  
-      'Web-images/Website_1.jpg','Web-images/Website_2.jpg',  
-      'Web-images/Shopping_1.jpg','Web-images/Shopping_2.jpg',  
-      'Web-images/Investment_1.jpg','Web-images/Investment_2.jpg',  
-      'Web-images/Graphics_1.jpg','Web-images/Graphics_2.jpg',  
-      'Web-images/Analysis_1.jpg','Web-images/Analysis_2.jpg'  
-    ];  
-    
-    let current = 0;  
-    const slide1 = document.getElementById('slide1');  
-    const slide2 = document.getElementById('slide2');  
-    
-    // Initial setup  
-    slide1.style.backgroundImage = `url('${slides[current]}')`;  
-    slide1.style.opacity = 1;  
-    
-    setInterval(() => {  
-      const next = (current + 1) % slides.length;  
-      slide2.style.backgroundImage = `url('${slides[next]}')`;  
-      slide2.style.opacity = 1;  
-      slide1.style.opacity = 0;  
-    
-      // Swap for next iteration  
-      [slide1.style.backgroundImage, slide2.style.backgroundImage] = [slide2.style.backgroundImage, slide1.style.backgroundImage];  
-      [slide1.style.opacity, slide2.style.opacity] = [1, 0];  
-    
-      current = next;  
-    }, 10000); // 10 seconds per image  
-  </script>  
-</body>  
+  <!-- Dynamic Header -->
+  <header id="dynamic-header">
+    <div class="overlay"></div>
+    <h1>Wealthy Web Solutions</h1>
+    <p>Landing Pages | Full Websites | E-commerce | Investment Portals | Custom Digital Solutions</p>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Turn Your Ideas into Stunning Websites</h2>
+    <p>Whether you need a simple landing page, a full business website, an e-commerce platform, or an investment portal, I create professional, responsive, and high-converting digital solutions that help your business grow online.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Get Your Project Started
+    </button>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <h3>Our Services</h3>
+    <div class="services">
+      <div class="card">
+        <h4>🌐 Landing Pages</h4>
+        <p>High-converting, mobile-friendly landing pages for startups, campaigns, or promotions.</p>
+      </div>
+      <div class="card">
+        <h4>💻 Full Websites</h4>
+        <p>Professional websites for businesses, creatives, and organizations, fully responsive and scalable.</p>
+      </div>
+      <div class="card">
+        <h4>🛒 E-commerce & Consignment Platforms</h4>
+        <p>Online stores, marketplaces, and consignment platforms to sell products or services.</p>
+      </div>
+      <div class="card">
+        <h4>📊 Investment & Finance Sites</h4>
+        <p>Portals to track investments, portfolios, and financial data securely and beautifully.</p>
+      </div>
+      <div class="card">
+        <h4>🎨 Graphics & Branding</h4>
+        <p>Custom logos, flyers, digital assets, and visual branding for your business.</p>
+      </div>
+      <div class="card">
+        <h4>📊 Data Analysis & Optimization</h4>
+        <p>Web analytics, SEO optimization, and reporting to grow traffic and sales.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section" id="pricing">
+    <h3>Pricing Plans</h3>
+    <div class="pricing">
+      <div class="price-box">
+        <h4>Landing Page</h4>
+        <p>Perfect for campaigns & startups</p>
+        <div class="price">₦15,000 – ₦30,000</div>
+      </div>
+      <div class="price-box">
+        <h4>Full Website</h4>
+        <p>Professional sites for businesses & portfolios</p>
+        <div class="price">₦50,000+</div>
+      </div>
+      <div class="price-box">
+        <h4>E-commerce / Investment Site</h4>
+        <p>High-value platforms with advanced functionality</p>
+        <div class="price">₦80,000 – ₦200,000+</div>
+      </div>
+      <div class="price-box">
+        <h4>Maintenance & Optimization</h4>
+        <p>Monthly retainer for updates, SEO, and analytics</p>
+        <div class="price">₦10,000 – ₦30,000 / month</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <h3>Work With Me</h3>
+    <p>Ready to bring your project to life? Reach out today and let’s discuss how I can help you create a professional, high-performing website or platform.</p>
+    <p>Email: <a href="mailto:odafeogheneemeseh007@gmail.com">odafeogheneemeseh007@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/odafeoghene-emeseh-941464384" target="_blank">Odafeoghene Emeseh</a></p>
+    <p>GitHub: <a href="https://github.com/techthinker360" target="_blank">techthinker360</a></p>
+    <p>WhatsApp: <a href="https://wa.me/+2347032199329" target="_blank">Send us a message</a></p>
+    <button onclick="window.location.href='mailto:odafeogheneemeseh007@gmail.com';" style="margin-top:1rem;padding:0.8rem 1.5rem;background:#4F46E5;color:#fff;border:none;border-radius:8px;cursor:pointer;">Send a Message</button>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    &copy; ©2025 Wealthy Web Solutions. All rights reserved.
+  </footer>
+
+  <!-- JavaScript for Dynamic Header Images -->
+  <script>
+    const header = document.getElementById('dynamic-header');
+
+    // Array of all service images (use exact capitalization)
+    const images = [
+      'Web-images/Landing_1.jpg',
+      'Web-images/Landing_2.jpg',
+      'Web-images/Website_1.jpg',
+      'Web-images/Website_2.jpg',
+      'Web-images/Shopping_1.jpg',
+      'Web-images/Shopping_2.jpg',
+      'Web-images/Investment_1.jpg',
+      'Web-images/Investment_2.jpg',
+      'Web-images/Graphics_1.jpg',
+      'Web-images/Graphics_2.jpg',
+      'Web-images/Analysis_1.jpg',
+      'Web-images/Analysis_2.jpg'
+    ];
+
+    let index = 0;
+
+    function changeBackground() {
+      header.style.backgroundImage = `url('${images[index]}')`;
+      index = (index + 1) % images.length; // loop infinitely
+    }
+
+    changeBackground(); // initial image
+    setInterval(changeBackground, 10000); // change every 10 seconds
+  </script>
+
+</body>
 </html>
