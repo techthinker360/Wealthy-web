@@ -28,21 +28,33 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Background layers for crossfade */
+    #dynamic-header .bg-slide {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
       background-size: cover;
       background-position: center;
-      transition: background-image 1s ease-in-out;
+      opacity: 0;
+      transition: opacity 3s ease-in-out;
+    }
+
+    #dynamic-header .bg-slide.active {
+      opacity: 1;
     }
 
     #dynamic-header .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(79,70,229,0.6); /* semi-transparent overlay */
-      z-index: 1;
+      background: rgba(79,70,229,0.6);
+      z-index: 2;
     }
 
     #dynamic-header h1, #dynamic-header p, #dynamic-header nav {
       position: relative;
-      z-index: 2;
+      z-index: 3;
     }
 
     nav a {color: #fff; text-decoration: none; margin: 0 1rem; font-weight: 600; transition: color 0.3s;}
@@ -102,7 +114,11 @@
 
   <!-- Dynamic Header -->
   <header id="dynamic-header">
+    <!-- Background layers -->
+    <div class="bg-slide active"></div>
+    <div class="bg-slide"></div>
     <div class="overlay"></div>
+
     <h1>Wealthy Web Solutions</h1>
     <p>Landing Pages | Full Websites | E-commerce | Investment Portals | Custom Digital Solutions</p>
     <nav>
@@ -192,14 +208,12 @@
 
   <!-- Footer -->
   <footer>
-    &copy; ©2025 Wealthy Web Solutions. All rights reserved.
+    &copy;2025 Wealthy Web Solutions. All rights reserved.
   </footer>
 
   <!-- JavaScript for Dynamic Header Images -->
   <script>
-    const header = document.getElementById('dynamic-header');
-
-    // Array of all service images (use exact capitalization)
+    const slides = document.querySelectorAll("#dynamic-header .bg-slide");
     const images = [
       'Web-images/Landing_1.jpg',
       'Web-images/Landing_2.jpg',
@@ -216,14 +230,23 @@
     ];
 
     let index = 0;
+    slides[0].style.backgroundImage = `url('${images[0]}')`;
+    slides[1].style.backgroundImage = `url('${images[1]}')`;
 
     function changeBackground() {
-      header.style.backgroundImage = `url('${images[index]}')`;
-      index = (index + 1) % images.length; // loop infinitely
+      const current = index % images.length;
+      const next = (index + 1) % images.length;
+
+      slides[0].style.backgroundImage = `url('${images[current]}')`;
+      slides[1].style.backgroundImage = `url('${images[next]}')`;
+
+      slides[0].classList.toggle("active");
+      slides[1].classList.toggle("active");
+
+      index++;
     }
 
-    changeBackground(); // initial image
-    setInterval(changeBackground, 10000); // change every 10 seconds
+    setInterval(changeBackground, 10000); // every 10 seconds
   </script>
 
 </body>
