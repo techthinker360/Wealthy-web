@@ -29,6 +29,8 @@
       flex-direction: column;
       justify-content: center;
       overflow: hidden;
+      /* fallback background while images load (prevents a white flash) */
+      background-color: #111;
     }
 
     /* Background layers for crossfade */
@@ -37,9 +39,23 @@
       top: 0; left: 0; right: 0; bottom: 0;
       background-size: cover;
       background-position: center;
+      background-repeat: no-repeat;
       opacity: 0;
-      transition: opacity 3s ease-in-out;
+      transition: opacity 1.5s ease-in-out; /* change this to speed up/slow down crossfade */
+      will-change: opacity;
+      z-index: 1;
+      pointer-events: none;
     }
+#dynamic-header h1 {
+  font-size: 3rem;   /* bigger text */
+  font-weight: 700;  /* bold */
+}
+
+@media (min-width: 768px) {
+  #dynamic-header h1 {
+    font-size: 4rem; /* even bigger on larger screens */
+  }
+}
 
     #dynamic-header .bg-slide.active {
       opacity: 1;
@@ -48,7 +64,7 @@
     #dynamic-header .overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(79,70,229,0.6);
+      background: rgba(79,70,229,0.6); /* semi-transparent overlay */
       z-index: 2;
     }
 
@@ -211,7 +227,7 @@
     &copy;2025 Wealthy Web Solutions. All rights reserved.
   </footer>
 
-  <!-- JavaScript for Dynamic Header Images -->
+  <!-- JavaScript for Dynamic Header Images (fixed crossfade logic) -->
   <script>
     const slides = document.querySelectorAll("#dynamic-header .bg-slide");
     const images = [
@@ -229,24 +245,47 @@
       'Web-images/Analysis_2.jpg'
     ];
 
-    let index = 0;
+    // ---- Settings you can tweak easily ----
+    const fadeDuration = 1500;   // ms -- must match CSS transition duration
+    const slideInterval = 10000; // ms between slide changes
+    // ----------------------------------------
+
+    // Preload images (reduces flashes)
+    images.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    // Initialize
+    let activeSlide = 0;        // index of currently visible slide (0 or 1)
+    let nextImageIndex = 1;     // next image index in images[]
     slides[0].style.backgroundImage = `url('${images[0]}')`;
+    // ensure second slide has something so first transition is smooth
     slides[1].style.backgroundImage = `url('${images[1]}')`;
 
+    // Make sure first slide is visible
+    slides[0].classList.add('active');
+
     function changeBackground() {
-      const current = index % images.length;
-      const next = (index + 1) % images.length;
+      const hidden = 1 - activeSlide; // the slide that is currently hidden
+      // set the next image only on the hidden slide
+      slides[hidden].style.backgroundImage = `url('${images[nextImageIndex]}')`;
 
-      slides[0].style.backgroundImage = `url('${images[current]}')`;
-      slides[1].style.backgroundImage = `url('${images[next]}')`;
+      // trigger crossfade: fade the hidden slide in
+      slides[hidden].classList.add('active');
 
-      slides[0].classList.toggle("active");
-      slides[1].classList.toggle("active");
+      // after fadeDuration, hide the previous slide and update activeSlide
+      setTimeout(() => {
+        slides[activeSlide].classList.remove('active');
+        activeSlide = hidden;
+      }, fadeDuration);
 
-      index++;
+      // prepare next image index
+      nextImageIndex = (nextImageIndex + 1) % images.length;
     }
 
-    setInterval(changeBackground, 10000); // every 10 seconds
+    // start automatic slideshow
+    setInterval(changeBackground, slideInterval);
   </script>
 
 </body>
